@@ -1,0 +1,147 @@
+<html>
+  <head>
+     <script>
+       
+       function method1(){
+         var z = document.getElementById("222");
+         var k = document.getElementById("333");
+         var b = document.getElementById("444");
+         var h = document.getElementsByName("hope");
+         
+        if(z.children[0].selected){
+          k.disabled=false;
+          k.children[0].hidden=true;
+          k.children[1].hidden=false;
+          k.children[2].hidden=false;
+          k.children[3].hidden=false;
+          k.children[1].selected=true;
+          b.value="留学登録";
+            }
+        if(z.children[1].selected){
+          k.disabled=false;
+          k.children[3].hidden=true;
+          k.children[0].hidden=true;
+          k.children[2].selected=true;
+          b.value="登録";
+            }
+        if(z.children[2].selected){
+          k.disabled=true;
+          k.children[0].selected=true;
+          b.value="登録";
+          }
+
+            }
+       function method2(){
+           var z = document.getElementById("222");
+           var k = document.getElementById("333");
+           var h = document.getElementsByName("hope");
+           if((z.children[0].selected && k.children[2].selected)||(z.children[0].selected && k.children[3].selected)){
+          
+          h[0].checked=true;
+          h[1].checked=true;
+          h[2].checked=false;
+          h[3].checked=false;
+          h[4].checked=false;
+          h[5].checked=false;
+
+            }
+
+          if(z.children[0].selected && k.children[1].selected){
+          h[0].checked=true;
+          h[1].checked=false;
+          h[2].checked=false;
+          h[3].checked=false;
+          h[4].checked=false;
+          h[5].checked=false;
+            }
+
+        if(z.children[1].selected && k.children[1].selected){
+          h[0].checked=false;
+          h[1].checked=true;
+          h[2].checked=false;
+          h[3].checked=false;
+          h[4].checked=false;
+          h[5].checked=false;
+            }
+
+
+
+        }
+        
+         
+      function method3(){
+         var bangou=document.getElementById("999");
+         var pattern = /\s/;
+         var pattern2= /H.+\d/;
+         
+        if(!(pattern2.test(bangou.value) && bangou.value.length==12)){alert("在留番号格式不对")
+                }else if(pattern.test(bangou.value)){
+          
+          bangou.value="";
+              }
+         
+         
+
+
+        }
+      function method4(){
+         var k = document.getElementsByName("hope");
+         var b = document.getElementById("444");
+         
+         if(k[0].checked==false && k[1].checked==false && k[2].checked==false && k[3].checked==false && k[4].checked==false && k[5].checked==false){
+          
+         b.click();
+
+           }
+        }
+
+      function method5(){
+          
+          var count2 = "";
+          var count = 0;
+          var k = document.getElementsByName("hope");
+ 
+          for(var i=0; i<k.length; i++){
+            if(k[i].checked){
+                 count++;
+                 count2=count2+k[i].nextSibling.data+"+";      
+                  }
+
+            }
+          
+          var formm=document.getElementById("123");
+          if(count<=2){
+          formm.action="http://www.google.com";
+           }else{alert(count2.substring(0,count2.length-1));}
+          
+                  
+          
+         
+      }
+    </script>
+  </head>
+  <body>
+　　<form id="123" name="cardForm" method="get" action="/card/cardReg">
+  在留資格：<select onchange="method1();" id="222">         
+              <option selected>留学</option>
+              <option>就労</option>
+              <option>永住者</option>
+           </select>　　　
+　許可期間：<select id="333" onchange="method2();">
+              <option hidden>-</option>
+              <option selected>１年</option>
+              <option>３年</option>
+              <option>４年</option>
+           </select>　　
+   <br/>
+   在留番号：<input value="请输入再留号码" id="999" onchange="method3();"></input><br/>
+   志望動機： <input type="checkbox" checked name="hope" onchange="method4();"></input>留学する<input type="checkbox" name="hope" onchange="method4();"></input>仕事する<input type="checkbox" name="hope" onchange="method4();"></input>研修する<br/>
+    &nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;   <input type="checkbox" name="hope" onchange="method4();"></input>旅行する<input type="checkbox" name="hope" onchange="method4();"></input>投資貿易<input type="checkbox" name="hope" onchange="method4();"></input>外交行政<br/>
+     &nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;
+   <input type="submit" value="留学登録" id="444" onclick="method5();"></input>
+
+
+    </form>
+  
+  </body>
+</html>
